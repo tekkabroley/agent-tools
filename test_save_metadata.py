@@ -2,8 +2,8 @@ from photo_metadata_server import save_photo_metadata
 import os
 import json
 
-image_path = os.path.expanduser("~/pictures/post/DSC01630.JPG")
-output_path = "test_metadata_output.json"
+image_path = os.path.expanduser("~/github/agent-tools/test-photos/DSC00037.jpg")
+output_path = os.path.expanduser("~/github/agent-tools/test-photos/test_save_output.json")
 
 print(f"Testing metadata saving from: {image_path}")
 print(f"Saving to: {output_path}")
