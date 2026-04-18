@@ -24,3 +24,12 @@ This repository contains a collection of MCP (Model Context Protocol) servers.
 - **Key Tools**:
     - `get_photo_metadata`: Returns all available metadata as a JSON string.
     - `save_photo_metadata`: Exports metadata to a local JSON file.
+    - `create_photo_markdown`: Generates a markdown file with YAML frontmatter.
+
+### S3 Server (`s3_server.py`)
+- **Framework**: Built using `FastMCP`.
+- **Engine**: Uses `boto3` to interact with AWS S3.
+- **Transport**: Uses `stdio` for communication with Claude Desktop.
+- **Key Tools**:
+    - `list_s3_files`: Lists objects in a bucket.
+    - `download_s3_file`: Downloads a file from S3 to local disk.
