@@ -29,7 +29,10 @@ This repository contains a collection of MCP (Model Context Protocol) servers.
 ### S3 Server (`s3_server.py`)
 - **Framework**: Built using `FastMCP`.
 - **Engine**: Uses `boto3` to interact with AWS S3.
-- **Transport**: Uses `stdio` for communication with Claude Desktop.
-- **Key Tools**:
-    - `list_s3_files`: Lists objects in a bucket.
-    - `download_s3_file`: Downloads a file from S3 to local disk.
+- **Key Tools**: `list_s3_files`, `download_s3_file`.
+
+### Telegram Notification Server (`telegram_mcp.py`)
+- **Framework**: Built using `FastMCP`.
+- **Engine**: Uses `python-telegram-bot`.
+- **Key Tools**: `send_telegram_notification`, `send_terminal_output`, `request_approval`, `get_latest_messages`.
+- **Requirement**: Needs `.env` file with `TELEGRAM_BOT_TOKEN` and `AUTHORIZED_USER_ID`.

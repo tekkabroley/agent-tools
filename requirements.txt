@@ -1,3 +1,5 @@
 mcp
 pyexiftool
 boto3
+python-telegram-bot
+python-dotenv
