@@ -1,2 +1,5 @@
 .venv/
 test-photos/
+.env
+__pycache__/
+.telegram_offset

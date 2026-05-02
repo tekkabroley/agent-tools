@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 AUTH_ID = os.getenv("AUTHORIZED_USER_ID")
