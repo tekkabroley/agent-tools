@@ -94,29 +94,42 @@ async def get_latest_messages() -> str:
         updates = await bot.get_updates(offset=offset, limit=100, timeout=5)
     except Exception as e:
         return f"Error fetching updates: {str(e)}"
-    
+
     auth_messages = []
     new_offset = offset
-    
+
     for u in updates:
         if u.message and u.message.from_user.id == AUTH_ID and u.message.text:
             auth_messages.append(f"[{u.message.date}] {u.message.text}")
-        
+
         # Track the highest update_id to increment offset
         if new_offset is None or u.update_id >= new_offset:
             new_offset = u.update_id + 1
-            
+
     if new_offset is not None and (offset is None or new_offset > offset):
         save_offset(new_offset)
-        
+
     if not auth_messages:
         return "No new messages from authorized user."
-        
+
     # Return last 5
     latest = auth_messages[-5:]
     count = len(auth_messages)
     header = f"Found {count} new messages (showing last 5):\n" if count > 5 else f"Found {count} new messages:\n"
     return header + "\n".join(latest)
+
+@mcp.tool()
+async def listen_for_response() -> str:
+    """Listens for a response from the authorized user on Telegram for up to 60 minutes, checking every 10 minutes."""
+    for attempt in range(6):
+        messages = await get_latest_messages()
+        if messages != "No new messages from authorized user.":
+            return messages
+
+        if attempt < 5:
+            await asyncio.sleep(600)
+
+    return "No response received after 60 minutes"
 
 if __name__ == "__main__":
     mcp.run()
